@@ -10,7 +10,7 @@ export interface FrontMatterOptions {
    * Whether to use [safeload](https://github.com/nodeca/js-yaml#safeload-string---options-)
    * @default true
    */
-  allowUnsafe?: boolean
+  allowDuplicateKeys?: boolean
 }
 
 interface FM {

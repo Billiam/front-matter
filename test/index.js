@@ -8,7 +8,7 @@ test('var fm = require("front-matter")', function (t) {
   t.end()
 })
 
-test('fm(string) - parse yaml delinetead by `---`', function (t) {
+test('fm(string) - parse yaml delineated by `---`', function (t) {
   fs.readFile(
     path.resolve(__dirname, '../examples/dashes-seperator.md'),
     'utf8',
@@ -37,7 +37,7 @@ test('fm(string) - parse yaml delinetead by `---`', function (t) {
     })
 })
 
-test('fm(string) - parse yaml delinetead by `= yaml =`', function (t) {
+test('fm(string) - parse yaml delineated by `= yaml =`', function (t) {
   fs.readFile(
     path.resolve(__dirname, '../examples/yaml-seperator.md'),
     'utf8',
@@ -106,7 +106,7 @@ test('fm(string) - insecure yaml', function (t) {
     path.resolve(__dirname, '../examples/unsafe.md'),
     'utf8',
     function (err, data) {
-      t.error(err, 'read(...) should not error')
+      t.error(err, 'read(...) should error')
       t.throws(() => {
         fm(data)
       }, /YAMLException/)
@@ -172,12 +172,10 @@ test('fm(string, true) - complex and unsafe yaml', function (t) {
     path.resolve(__dirname, '../examples/complex-yaml.md'),
     'utf8',
     function (err, data) {
-      t.error(err, 'read(...) should not error')
-      var content = fm(data, { allowUnsafe: true })
-      t.ok(content.attributes, 'should have `attributes` key')
-      t.equal(content.attributes.title, 'This is a title!')
-      t.equal(content.attributes.contact, null)
-      t.equal(content.attributes.match.toString(), '/pattern/gim')
+      t.error(err, 'read(...) should error')
+      t.throws(() => {
+        fm(data)
+      }, /YAMLException/)
       t.end()
     })
 })

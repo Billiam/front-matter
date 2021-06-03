@@ -30,7 +30,7 @@ let nullBox: null;
 
   {
     // THROWS 'string' is not assignable to type 'boolean | undefined'.
-    fm(file, {allowUnsafe: 'yes'})
+    fm(file, {allowDuplicateKeys: 'yes'})
   }
 
   {
